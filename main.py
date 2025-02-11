@@ -11,10 +11,10 @@ from interactor import Interactor
 # Opens question file then extracts the info and closes it
 
 #Initializes browser
-directory = 'C:/Users/Loye/OneDrive/Desktop/Code/Python_projects/Actual_projects/Comptia/'
 
-#directory = input("Input directory: (syntax drive:/file/lo/cation)")
-#"C:/Users/Loye/OneDrive/Desktop/Comptia/CompTIA unit 4.5 questions.txt"
+
+directory = input("Input directory: (syntax drive:/file/lo/cation)")
+
 correct_answer = input("Input the correct answer value: ")
 user_name = input("Username: ")      
 password =  input("Password: ")
@@ -66,32 +66,7 @@ for files in os.listdir(directory):
     with open (directory+files,'r',encoding='utf-8') as questions:
         list_of_questions = questions.readlines()    
         questions.close()
-      
-   
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    '''for values in range(3,len(list_of_questions)):
-        list_of_questions[values] = list_of_questions[values].split()
-        if list_of_questions[values] != []:
-            question_input.interact_with(driver,1,xpath_list[3+x], ' '.join(list_of_questions[values]))
-            x+=1
-       
-        x =0   '''
-       
-    '''while list_of_questions[values] != []:
-            question_input.interact_with(driver,1,xpath_list[3+x], ''.join(list_of_questions[values]))
-            x+=1    
-   '''
-        
-        
+
 
     for values in range(len(list_of_questions)):
         list_of_questions[values] = list_of_questions[values].split()
@@ -115,6 +90,6 @@ for files in os.listdir(directory):
                
                
 
-    #question_input.click(driver, 5 , xpath_list[10] )  # Save set
-    #question_input.click(driver, 5 , xpath_list[15] )  # Create set
+    question_input.click(driver, 4 , xpath_list[10] )  # Save set
+    question_input.click(driver, 4 , xpath_list[15] )  # Create set
     
