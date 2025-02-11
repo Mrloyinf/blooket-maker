@@ -11,8 +11,8 @@ from interactor import Interactor
 # Opens question file then extracts the info and closes it
 
 #Initializes browser
-directory = 'X:File/Folder/Path/Here'
-'''
+directory = 'C:/Users/Loye/OneDrive/Desktop/Code/Python_projects/Actual_projects/Comptia/'
+
 #directory = input("Input directory: (syntax drive:/file/lo/cation)")
 #"C:/Users/Loye/OneDrive/Desktop/Comptia/CompTIA unit 4.5 questions.txt"
 correct_answer = input("Input the correct answer value: ")
@@ -54,7 +54,7 @@ xpath_list = [
    '/html/body/div[1]/div/div/div[1]/a[6]'#create set
    '//*[@id="app"]/div/div/div[1]/a[6]' #set creator
     ]
-'''
+
 #opens all files in the directory and iterates through them
 for files in os.listdir(directory):
     name = files.split()
@@ -97,20 +97,20 @@ for files in os.listdir(directory):
         list_of_questions[values] = list_of_questions[values].split()
         list_of_questions[values] = ' '.join(list_of_questions[values])
 
-   # question_input.interact_with(driver,action,1,xpath_list[0],name) #input title
-    #question_input.click(driver, 1 ,xpath_list[1]) # Click create button 
-    #question_input.click(driver, 1 ,xpath_list[2]) # add question
+    question_input.interact_with(driver,action,1,xpath_list[0],name) #input title
+    question_input.click(driver, 1 ,xpath_list[1]) # Click create button 
+    question_input.click(driver, 1 ,xpath_list[2]) # add question
     for values in range(len(list_of_questions)):
       if list_of_questions[values] != '':
             print(list_of_questions[values])
-            question_input.interact_with(driver,action,1,xpath_list[3+answer_index], list_of_questions[values+answer_index])
+            question_input.interact_with(driver,action,2,xpath_list[3+answer_index], list_of_questions[values])
             answer_index+=1
-            #if  list_of_questions[values+2] == '':
+            if  list_of_questions[values+1] == '' and  list_of_questions[values+2] == '' :
 
-     #          question_input.click(driver, 3 ,xpath_list[8]) #click correct answer
-      #         question_input.click(driver, 3 ,xpath_list[9]) #click save
-       #        question_input.click(driver, 3 ,xpath_list[2]) #click add question
-             #  asnwer_index =0
+              question_input.click(driver, 3 ,xpath_list[8]) #click correct answer
+              question_input.click(driver, 3 ,xpath_list[9]) #click save
+              question_input.click(driver, 3 ,xpath_list[2]) #click add question
+              answer_index =0
                
                
                
