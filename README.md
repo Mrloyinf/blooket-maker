@@ -7,7 +7,7 @@ Simple blooket maker project built using selenium api
 * Then download the zip file
 * Put txt files in the choice directory
 * input the directory in the console
-#Syntax
+# Syntax
 The question and answers should look like this (the correct answer must be the same otherwise it wont work. For instance if the first answer is right for the first question then it must be right for all of the rest.)
 
 What happened during the First Neolithic Agricultural Revolution?
