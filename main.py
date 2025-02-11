@@ -103,13 +103,13 @@ for files in os.listdir(directory):
     for values in range(len(list_of_questions)):
       if list_of_questions[values] != '':
             print(list_of_questions[values])
-            question_input.interact_with(driver,action,2,xpath_list[3+answer_index], list_of_questions[values])
+            question_input.interact_with(driver,action,1,xpath_list[3+answer_index], list_of_questions[values])
             answer_index+=1
             if  list_of_questions[values+1] == '' and  list_of_questions[values+2] == '' :
 
-              question_input.click(driver, 3 ,xpath_list[8]) #click correct answer
-              question_input.click(driver, 3 ,xpath_list[9]) #click save
-              question_input.click(driver, 3 ,xpath_list[2]) #click add question
+              question_input.click(driver, 1 ,xpath_list[8]) #click correct answer
+              question_input.click(driver, 1 ,xpath_list[9]) #click save
+              question_input.click(driver, 1 ,xpath_list[2]) #click add question
               answer_index =0
                
                
