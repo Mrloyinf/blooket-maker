@@ -26,7 +26,7 @@ When did the “origins of farming” occur?
 
 # To-Do
 
-*Optimize the program
+* Optimize the program
 * Simplify and add comments
 * Make kahoot and gimkit available
 * Create a gui
