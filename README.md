@@ -1,7 +1,8 @@
 # blooket-maker
 Simple blooket maker project built using selenium api
 
-#Setup
+# Setup
+
 * First do pip install selenium and edge driver as well
 * Then download the zip file
 * Put txt files in the choice directory
@@ -23,7 +24,8 @@ When did the “origins of farming” occur?
 
 ...
 
-#To-Do
+# To-Do
+
 *Optimize the program
 * Simplify and add comments
 * Make kahoot and gimkit available
