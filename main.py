@@ -1,3 +1,4 @@
+#Imoorts
 import os
 from selenium import webdriver 
 from selenium.webdriver.common.keys import Keys 
@@ -8,16 +9,15 @@ from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
 from interactor import Interactor
 
-# Opens question file then extracts the info and closes it
+
 
 #Initializes browser
-
-
 directory = input("Input directory: (syntax drive:/file/lo/cation)")
 
 correct_answer = input("Input the correct answer value: ")
 user_name = input("Username: ")      
 password =  input("Password: ")
+
 os.system('cls')
 driver = webdriver.Edge()
 action = ActionChains(driver)
@@ -25,9 +25,9 @@ question_input = Interactor()
 
 #Opens browser link
 driver.get("https://dashboard.blooket.com/my-sets")
-question_input.interact_with(driver,action,1,'/html/body/main/div[2]/div[2]/form/div[1]/input',user_name)
-question_input.interact_with(driver,action,1,'/html/body/main/div[2]/div[2]/form/div[2]/input',password)
-action.send_keys(Keys.RETURN).perform()
+question_input.interact_with(driver,action,1,'/html/body/main/div[2]/div[2]/form/div[1]/input',user_name) #click username
+question_input.interact_with(driver,action,1,'/html/body/main/div[2]/div[2]/form/div[2]/input',password)  #click password
+action.send_keys(Keys.RETURN).perform() #press enter
 question_input.click(driver,1,'//*[@id="app"]/div/div/div[1]/a[6]')# click set maker
 
     #Xpaths for the inputs and buttons nececarry
@@ -55,19 +55,20 @@ xpath_list = [
    '//*[@id="app"]/div/div/div[1]/a[6]' #set creator
     ]
 
-#opens all files in the directory and iterates through them
+#opens the directory and iterates through it like a list of files
 for files in os.listdir(directory):
     name = files.split()
     
-    #name.remove('questions.txt')
+    name.remove('.txt') #removes .txt from the name
     name = ' '.join(name)
     # name = input("Blooket Name: ")
     answer_index =0 
+    #Opens the file and turns it into a list
     with open (directory+files,'r',encoding='utf-8') as questions:
         list_of_questions = questions.readlines()    
         questions.close()
 
-
+    #remove the /n and turn it into ''
     for values in range(len(list_of_questions)):
         list_of_questions[values] = list_of_questions[values].split()
         list_of_questions[values] = ' '.join(list_of_questions[values])
@@ -79,7 +80,7 @@ for files in os.listdir(directory):
       if list_of_questions[values] != '':
             print(list_of_questions[values])
             question_input.interact_with(driver,action,1,xpath_list[3+answer_index], list_of_questions[values])
-            answer_index+=1
+            answer_index+=1 #Used as a sneaky work around to my lack of skill
             if  list_of_questions[values+1] == '' and  list_of_questions[values+2] == '' :
 
               question_input.click(driver, 1 ,xpath_list[8]) #click correct answer
