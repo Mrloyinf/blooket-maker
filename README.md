@@ -31,10 +31,10 @@ The question and answers should look like this (the correct answer must be the s
  2000 CE
 
 ...
-
+See example.txt
 # To-Do
 
 * Optimize the program
-* Simplify and add comments
+* Simplify
 * Make kahoot and gimkit available
 * Create a gui
