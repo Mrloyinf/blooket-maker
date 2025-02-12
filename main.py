@@ -74,14 +74,6 @@ for files in os.listdir(directory):
     with open (directory+files,'r',encoding='utf-8') as questions:
         list_of_questions = questions.readlines()    
         questions.close()
-      
-   
-    
-        
-        
-        
-        
-  
 
     for values in range(len(list_of_questions)):
         list_of_questions[values] = list_of_questions[values].split()
