@@ -8,9 +8,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
 from interactor import Interactor
 
-# Opens question file then extracts the info and closes it
 
-#Initializes browser
 
 
 directory = input("Input directory: (syntax drive:/file/lo/cation)")
@@ -23,6 +21,7 @@ user_name = input("Username: ")
 password =  input("Password: ")
 
 os.system('cls')
+#Initializes browser
 driver = webdriver.Edge()
 action = ActionChains(driver)
 question_input = Interactor()
