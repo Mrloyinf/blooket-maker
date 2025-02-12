@@ -10,34 +10,41 @@ from time import sleep
 
 class Interactor():
 
-    def __init__(self):
+    def set_global_driver_and_action(self,driver, action):
+      
+        '''
+
+        This function initializes the variables driver and action      
+
+        '''
         
-        self.driver = ''
-    def interact_with(self,driver_input,action_keys,sleep_time  ,xpath,question):
+        self.driver = driver
+        self.action = action
+    def interact_with(self,sleep_time = 0  ,xpath = 0,text_input = 0):
+            
             '''
             
-             This function first asks for a driver,then the action keys, then how fast it should type, then the xpath of the object, then the question text
-             
+            This function first asks for a sleep time, then the xpath of the object, then the question text.
+            
             '''
             
-            self.driver = driver_input
             interactable = WebDriverWait(self.driver, 100).until(
             EC.presence_of_element_located((By.XPATH,xpath)))
             interactable.click()
             sleep(sleep_time)
-            action_keys.send_keys(question).perform()
-    def click(self,driver,sleep_time , xpath):
+            self.action.send_keys(text_input).perform()
+    def click(self,sleep_time = 0, xpath = 0):
+          
            '''
 
-           This function asks for a type speed, then xpath of the object to be clicked
+           This function asks for a sleep time, then xpath of the object to be clicked
 
            '''
-           self.driver = driver
+           
            interactable = WebDriverWait(self.driver, 100).until(
             EC.presence_of_element_located((By.XPATH,xpath)))
            sleep(sleep_time)
            interactable.click()
-
 
 
 
