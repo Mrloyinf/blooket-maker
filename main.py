@@ -1,4 +1,3 @@
-#Imoorts
 import os
 from selenium import webdriver 
 from selenium.webdriver.common.keys import Keys 
@@ -9,26 +8,31 @@ from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
 from interactor import Interactor
 
-
+# Opens question file then extracts the info and closes it
 
 #Initializes browser
+
+
 directory = input("Input directory: (syntax drive:/file/lo/cation)")
 
+
 correct_answer = input("Input the correct answer value: ")
+name = input("Do you want to choose the names of the blookets: (Y/N) ")
 user_name = input("Username: ")      
+
 password =  input("Password: ")
 
 os.system('cls')
 driver = webdriver.Edge()
 action = ActionChains(driver)
 question_input = Interactor()
-
+question_input.set_global_driver_and_action(driver,action)
 #Opens browser link
 driver.get("https://dashboard.blooket.com/my-sets")
-question_input.interact_with(driver,action,1,'/html/body/main/div[2]/div[2]/form/div[1]/input',user_name) #click username
-question_input.interact_with(driver,action,1,'/html/body/main/div[2]/div[2]/form/div[2]/input',password)  #click password
-action.send_keys(Keys.RETURN).perform() #press enter
-question_input.click(driver,1,'//*[@id="app"]/div/div/div[1]/a[6]')# click set maker
+question_input.interact_with(xpath='/html/body/main/div[2]/div[2]/form/div[1]/input',text_input = user_name)
+question_input.interact_with(xpath='/html/body/main/div[2]/div[2]/form/div[2]/input',text_input = password)
+action.send_keys(Keys.RETURN).perform()
+question_input.click(xpath='//*[@id="app"]/div/div/div[1]/a[6]')# click set maker
 
     #Xpaths for the inputs and buttons nececarry
 xpath_list = [
@@ -55,42 +59,49 @@ xpath_list = [
    '//*[@id="app"]/div/div/div[1]/a[6]' #set creator
     ]
 
-#opens the directory and iterates through it like a list of files
+#opens all files in the directory and iterates through them
 for files in os.listdir(directory):
-    name = files.split()
     
-    name.remove('.txt') #removes .txt from the name
-    name = ' '.join(name)
+    #name.remove('questions.txt')
+    if name not in ['n','N','']:
+         name = input("Choose a name: ")
+    else:
+
+        name = files.split()
+        name = ' '.join(name)
     # name = input("Blooket Name: ")
     answer_index =0 
-    #Opens the file and turns it into a list
     with open (directory+files,'r',encoding='utf-8') as questions:
         list_of_questions = questions.readlines()    
         questions.close()
+      
+   
+    
+        
+        
+        
+        
+  
 
-    #remove the /n and turn it into ''
     for values in range(len(list_of_questions)):
         list_of_questions[values] = list_of_questions[values].split()
         list_of_questions[values] = ' '.join(list_of_questions[values])
 
-    question_input.interact_with(driver,action,1,xpath_list[0],name) #input title
-    question_input.click(driver, 1 ,xpath_list[1]) # Click create button 
-    question_input.click(driver, 1 ,xpath_list[2]) # add question
-    for values in range(len(list_of_questions)):
+    question_input.interact_with(1,xpath_list[0],name) #input title
+    question_input.click(sleep_time = 0.1,  xpath= xpath_list[1]) # Click create button 
+    question_input.click(sleep_time = 0.1, xpath= xpath_list[2]) # add question
+    for values in range(len(list_of_questions)-1):
       if list_of_questions[values] != '':
             print(list_of_questions[values])
-            question_input.interact_with(driver,action,1,xpath_list[3+answer_index], list_of_questions[values])
-            answer_index+=1 #Used as a sneaky work around to my lack of skill
+            question_input.interact_with(sleep_time = 0.1 , xpath = xpath_list[3+answer_index], text_input = list_of_questions[values])
+            answer_index+=1
             if  list_of_questions[values+1] == '' and  list_of_questions[values+2] == '' :
+      
+                question_input.click( sleep_time = 0.1 ,xpath = xpath_list[8]) #click correct answer
+                question_input.click( sleep_time = 0.1 ,xpath = xpath_list[9]) #click save
+                question_input.click( sleep_time = 0.1 ,xpath = xpath_list[2]) #click add question
+                answer_index =0
 
-              question_input.click(driver, 1 ,xpath_list[8]) #click correct answer
-              question_input.click(driver, 1 ,xpath_list[9]) #click save
-              question_input.click(driver, 1 ,xpath_list[2]) #click add question
-              answer_index =0
-               
-               
-               
-
-    question_input.click(driver, 4 , xpath_list[10] )  # Save set
-    question_input.click(driver, 4 , xpath_list[15] )  # Create set
-    
+    question_input.click( 2 , xpath_list[10] )  # Save set
+    question_input.click( 2 , xpath_list[15] )  # Create set
+    print(f"Done making blooket called: {name} ")   
