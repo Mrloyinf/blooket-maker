@@ -45,9 +45,6 @@ xpath_list = [
    '//*[@id="app"]/div/div/div[8]/div/div/div[3]/div[2]/div[3]/div/div[2]',# answer 3    6  
    '//*[@id="app"]/div/div/div[8]/div/div/div[3]/div[2]/div[4]/div/div[2]', # answer 4   7
    f'/html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[{correct_answer}]/div/div[1]/div[1]', # answer  1 check 8
-  # '/html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[2]/div/div[1]/div[1]',#answer 2 check
-   #'/html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[3]/div/div[1]/div[1]' # answer 3 check 
-   #'/html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[4]/div/div[1]/div[1]', # answer 4 check
    '//*[@id="app"]/div/div/div[8]/div/div/div[2]/div[2]/div[2]', #save  9
    '//*[@id="app"]/div/div/div[7]/div/div[1]/div[1]/div[5]',# save set  10
    '//*[@id="app"]/div/div/div[8]/div/div/div[2]/div[2]/div[1]',#escape 11
