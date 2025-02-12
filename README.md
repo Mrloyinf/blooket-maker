@@ -4,6 +4,7 @@ Simple blooket maker project built using selenium api
 # Setup
 
 * First do pip install selenium and edge driver as well
+* Then do pip install pip install webdriver-manager
 * Then download the zip file
 * Put txt files in the choice directory
 * input the directory in the console
