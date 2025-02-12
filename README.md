@@ -39,3 +39,5 @@ See example.txt
 * Simplify
 * Make kahoot and gimkit available
 * Create a gui
+
+Pro-Tip: If you change the delay speed to 0 it may not work because it is going too fast-faster than your load speeds- so selenium cannot find the html object :( .
