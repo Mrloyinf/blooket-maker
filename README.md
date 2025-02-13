@@ -5,6 +5,7 @@ Simple blooket maker project built using selenium api
 
 * First do pip install -r requirements.txt if you don't already have them
 * Then download the zip file
+* Extract the zip
 * Put txt files in the choice directory
 * input the directory in the console
 # Syntax
