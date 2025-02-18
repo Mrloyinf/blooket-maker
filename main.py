@@ -31,28 +31,28 @@ driver.get("https://dashboard.blooket.com/my-sets")
 question_input.interact_with(xpath='/html/body/main/div[2]/div[2]/form/div[1]/input',text_input = user_name)
 question_input.interact_with(xpath='/html/body/main/div[2]/div[2]/form/div[2]/input',text_input = password)
 action.send_keys(Keys.RETURN).perform()
-question_input.click(xpath='//*[@id="app"]/div/div/div[1]/a[6]')# click set maker
+question_input.click(xpath='/html/body/div/div/div/div[1]/a[7]/div')# click set maker
 
-    #Xpaths for the inputs and buttons nececarry
+    #Xpaths for the inputs and buttons neccarry
 xpath_list = [
 
    '//*[@id="app"]/div/div/div[7]/form/div[1]/div[2]/input', # title input 0
-   '//*[@id="app"]/div/div/div[7]/form/div[3]/div',# create button  1
+   '//*[@id="app"]/div/div/div[7]/form/div[3]/div',# create button  1 
    '//*[@id="app"]/div/div/div[7]/div/div[1]/div[2]/div[1]', # add question 2
-   '//*[@id="app"]/div/div/div[8]/div/div/div[3]/div[1]/div[2]',# question input 3 
-   '//*[@id="app"]/div/div/div[8]/div/div/div[3]/div[2]/div[1]/div/div[2]', # answer 1   4
-   '//*[@id="app"]/div/div/div[8]/div/div/div[3]/div[2]/div[2]/div/div[2]', # answer 2   5
-   '//*[@id="app"]/div/div/div[8]/div/div/div[3]/div[2]/div[3]/div/div[2]',# answer 3    6  
-   '//*[@id="app"]/div/div/div[8]/div/div/div[3]/div[2]/div[4]/div/div[2]', # answer 4   7
-   f'/html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[{correct_answer}]/div/div[1]/div[1]', # answer  1 check 8
-   '//*[@id="app"]/div/div/div[8]/div/div/div[2]/div[2]/div[2]', #save  9
-   '//*[@id="app"]/div/div/div[7]/div/div[1]/div[1]/div[5]',# save set  10
+   '/html/body/div/div/div/div[8]/div/div/div[3]/div[1]/div[2]',# question input 3 /html/body/div/div/div/div[8]/div/div/div[3]/div[1]/div[2]
+   '/html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[1]/div/div[2]', # answer 1   4 /html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[1]/div/div[2]
+   '/html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[2]/div/div[2]', # answer 2   5 /html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[2]/div/div[2]
+   '/html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[3]/div/div[2]',# answer 3    6  //*[@id="app"]/div/div/div[8]/div/div/div[3]/div[2]/div[3]/div/div[2]
+   '/html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[4]/div/div[2]', # answer 4   7  //*[@id="app"]/div/div/div[8]/div/div/div[3]/div[2]/div[4]/div/div[2]
+   f'/html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[{correct_answer}]/div/div[1]/div[1]', # answer  1 check 8 /html/body/div/div/div/div[8]/div/div/div[3]/div[2]/div[x]/div/div[1]/div[1]
+   '/html/body/div/div/div/div[8]/div/div/div[2]/div[2]/div[2]', #save  9 //*[@id="app"]/div/div/div[8]/div/div/div[2]/div[2]/div[2]
+   '//*[@id="app"]/div/div/div[7]/div/div[1]/div[1]/div[5]',# save set  10 /html/body/div/div/div/div[7]/div/div[1]/div[1]/div[5]/div[3]
    '//*[@id="app"]/div/div/div[8]/div/div/div[2]/div[2]/div[1]',#escape 11
-   '//*[@id="app"]/div/div/div[8]/div/div/div[2]/div[2]/div[1]/',#cancel 12
+   '/html/body/div/div/div/div[8]/div/div/div[2]/div[2]/div[1]',#cancel 12 /html/body/div/div/div/div[8]/div/div/div[2]/div[2]/div[1]
    '/html/body/main/div[2]/div[2]/form/div[2]/input',#input password 13
    '/html/body/main/div[2]/div[2]/form/div[1]/input',#input user
    '/html/body/div[1]/div/div/div[1]/a[6]'#create set
-   '//*[@id="app"]/div/div/div[1]/a[6]' #set creator
+   '//*[@id="app"]/div/div/div[1]/a[6]' #set creator /html/body/div/div/div/div[1]/a[7]/div
     ]
 
 #opens all files in the directory and iterates through them
