@@ -81,34 +81,35 @@ def blooket_maker(directory):
             list_of_questions[values] = ' '.join(list_of_questions[values])
 
         question_input.interact_with(1,xpath_list[0],name) #input title
-        question_input.click(sleep_time = 0,  xpath= xpath_list[1]) # Click create button 
-        question_input.click(sleep_time = 0, xpath= xpath_list[2]) # add question
+        question_input.click(  xpath= xpath_list[1]) # Click create button 
+        question_input.click( xpath= xpath_list[2]) # add question
         global question_count
         
         for values in range(len(list_of_questions)):
                 if list_of_questions[values] != '':
                     print(list_of_questions[values])
-                    question_input.interact_with(sleep_time = 0 , xpath = xpath_list[3+answer_index], text_input = list_of_questions[values])
+                    question_input.interact_with( xpath = xpath_list[3+answer_index], text_input = list_of_questions[values])
                     answer_index+=1
                    
                     try:
                         if  (list_of_questions[values+1] == '' and  list_of_questions[values+2] == '') :
                         
-                            question_input.click( sleep_time = 0 ,xpath = xpath_list[8]) #click correct answer
-                            question_input.click( sleep_time = 0 ,xpath = xpath_list[9]) #click save
+                            question_input.click(xpath = xpath_list[8]) #click correct answer
+                            question_input.click(xpath = xpath_list[9]) #click save
                             answer_index =0
                             question_count+=1
                             if values+2 <= len(list_of_questions)-1 :
-                                question_input.click( sleep_time = 0 ,xpath = xpath_list[2]) #click add question
+                                question_input.click( xpath = xpath_list[2]) #click add question
                     except IndexError:
                             question_count+=1
-                            question_input.click( sleep_time = 0 ,xpath = xpath_list[8]) #click correct answer
-                            question_input.click( sleep_time = 0 ,xpath = xpath_list[9]) #click save
-                
-        question_input.click( 2 , xpath_list[10] )  # Save set
+                            question_input.click(xpath = xpath_list[8]) #click correct answer
+                            question_input.click(xpath = xpath_list[9]) #click save
+        time.sleep(2)        
+        question_input.click(xpath_list[10] )  # Save set
         cycle +=1
         if cycle < len(os.listdir(directory))  :
-               question_input.click( 2 , xpath_list[15] )  # Create set
+               time.sleep(2)
+               question_input.click( xpath_list[15] )  # Create set
         print(f"Done making blooket called: {name} ")   
       
 blooket_maker(directory)       
