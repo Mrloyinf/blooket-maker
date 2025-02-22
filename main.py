@@ -10,34 +10,29 @@ from selenium.webdriver.edge.options import Options
 import time
 from interactor import Interactor
 
-# Opens question file then extracts the info and closes it
-
-#Initializes browser
-
-
 directory = input("Input directory: (syntax drive:/file/lo/cation)")
 question_count = 0
 options = Options()
+options.add_argument("user-agent=Your desired user agent")
 options.add_argument("--disable-blink-features=AutomationControlled")
 driver = webdriver.Edge(options=options)
 action = ActionChains(driver)
 question_input = Interactor()
 question_input.set_global_driver_and_action(driver,action)
-#Opens browser link
 
 start_time = time.time()
 
 def blooket_maker(directory):
-    correct_answer = 1 #input("Input the correct answer value: ")
-    name =  input("Do you want to choose the names of the blookets: (Y/N) ")
+    correct_answer = input("Input the correct answer value: ") #1
+    choice = input("Do you want to choose the names of the blookets: (Y/N) ") #"N"
     user_name = input("Username: ")      
     password = input("Password: ")
     os.system('cls')
+#Opens browser link
     driver.get("https://dashboard.blooket.com/my-sets")
     question_input.interact_with(xpath='/html/body/main/div[2]/div[2]/form/div[1]/input',text_input = user_name)
     question_input.interact_with(xpath='/html/body/main/div[2]/div[2]/form/div[2]/input',text_input = password)
     action.send_keys(Keys.RETURN).perform()
-    question_input.click(xpath='//*[@id="app"]/div/div/div[1]/a[6]')# click set maker
 
         #Xpaths for the inputs and buttons nececarry
     xpath_list = [
@@ -61,17 +56,17 @@ def blooket_maker(directory):
        '//*[@id="app"]/div/div/div[1]/a[6]' #set creator /html/body/div/div/div/div[1]/a[7]/div
         ]
     #opens all files in the directory and iterates through them
+    question_input.click(xpath='//*[@id="app"]/div/div/div[1]/a[6]')# click set maker
     for files in os.listdir(directory):
         cycle = 0 
         answer_index = 0 
         #name.remove('questions.txt')
-        if name not in ['n','N','']:
-                name = input("Choose a name: ")
+        if choice not in ['n','N','']:
+                name = input("Input a name: ")
         else:
 
             name = files.split()
             name = ' '.join(name)
-        
         with open (directory+files,'r',encoding='utf-8') as questions:
             list_of_questions = questions.readlines()    
             questions.close()
@@ -81,37 +76,42 @@ def blooket_maker(directory):
             list_of_questions[values] = ' '.join(list_of_questions[values])
 
         question_input.interact_with(1,xpath_list[0],name) #input title
-        question_input.click(  xpath= xpath_list[1]) # Click create button 
-        question_input.click( xpath= xpath_list[2]) # add question
+        question_input.click(sleep_time = 0,  xpath= xpath_list[1]) # Click create button 
+        question_input.click(sleep_time = 0, xpath= xpath_list[2]) # add question
         global question_count
         
         for values in range(len(list_of_questions)):
                 if list_of_questions[values] != '':
                     print(list_of_questions[values])
-                    question_input.interact_with( xpath = xpath_list[3+answer_index], text_input = list_of_questions[values])
+                    question_input.interact_with(sleep_time = 0 , xpath = xpath_list[3+answer_index], text_input = list_of_questions[values])
                     answer_index+=1
                    
                     try:
                         if  (list_of_questions[values+1] == '' and  list_of_questions[values+2] == '') :
+                            if  (list_of_questions[values+1] == '' and  list_of_questions[values+2] == '' and list_of_questions[values+3] =='') :
+                                 if( list_of_questions[values+4] ==''):
+                                    del list_of_questions[values+3]
+                                    del list_of_questions[values+4]
+                                 del list_of_questions[values+3]
+                                     
                         
-                            question_input.click(xpath = xpath_list[8]) #click correct answer
-                            question_input.click(xpath = xpath_list[9]) #click save
+                            question_input.click( sleep_time = 0 ,xpath = xpath_list[8]) #click correct answer
+                            question_input.click( sleep_time = 0 ,xpath = xpath_list[9]) #click save
                             answer_index =0
                             question_count+=1
                             if values+2 <= len(list_of_questions)-1 :
-                                question_input.click( xpath = xpath_list[2]) #click add question
+                                question_input.click( sleep_time = 0 ,xpath = xpath_list[2]) #click add question
                     except IndexError:
                             question_count+=1
-                            question_input.click(xpath = xpath_list[8]) #click correct answer
-                            question_input.click(xpath = xpath_list[9]) #click save
-        time.sleep(2)        
-        question_input.click(xpath_list[10] )  # Save set
+                            question_input.click( sleep_time = 0 ,xpath = xpath_list[8]) #click correct answer
+                            question_input.click( sleep_time = 0 ,xpath = xpath_list[9]) #click save
+                
+        question_input.click( 2 , xpath_list[10] )  # Save set
         cycle +=1
         if cycle < len(os.listdir(directory))  :
-               time.sleep(2)
-               question_input.click( xpath_list[15] )  # Create set
-        print(f"Done making blooket called: {name} ")   
-      
-blooket_maker(directory)       
+               question_input.click(xpath='//*[@id="app"]/div/div/div[1]/a[6]')# click set maker
+              
+        print(f"Done making blooket called: {name} ")  
+blooket_maker(directory)
 execution_time = time.time() - start_time
-print(f"It took {execution_time} seconds to put {question_count} questions in the blooket(s) ")
+print(f"It took {execution_time} seconds to put {question_count} questions in the blooket(s)")
